@@ -1,4 +1,5 @@
-import readline
+import math
+import libedit
 
 print("hello world\n")
 
@@ -11,9 +12,10 @@ def modify(k):
 modify(m)
 
 
-
 def banner(message, border='-'):
     line = border * len(message)
     print(line)
     print(message)
     print(line)
+
+print(math.sqrt(100))
