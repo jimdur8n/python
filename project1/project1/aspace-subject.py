@@ -3,11 +3,19 @@
 from lxml import html
 import requests
 
+with open("ark.txt", "r") as f:
+     lines = f.readlines()
+     lines = [x.strip() for x in lines]
 
-page = requests.get("http://archiveswest.orbiscascade.org/ark:/80444/xv22924/")
-tree = html.fromstring(page.content)
+s = open("subjects.txt", "a")
 
-#This will hopefully create a list of buyers:
-subjects = tree.xpath('//a[contains(@href,"subjects")]/text()')
+for line in lines:
+     page = requests.get(line)
+     tree = html.fromstring(page.content)
+     #This will hopefully create a list of buyers:
+     subjects = tree.xpath('//a[contains(@href,"subjects")]/text()')
+     title = tree.xpath('//title/text()')
+     s.write(str(title)+'   '+str(subjects)+'\n')
 
-print('subjects: ',subjects)
+s.close()
+f.close()
