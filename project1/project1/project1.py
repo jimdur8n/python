@@ -4,13 +4,14 @@ import os
 print("hello world\n")
 
 m = [9, 14, 24]
+m += ['dog']
 
 def modify(k):
-    k.append(39)
+    k.insert(1, 39)
     print("k =", k)
 
 modify(m)
-
+del m[1]
 
 def banner(message, border='-'):
     line = border * len(message)
